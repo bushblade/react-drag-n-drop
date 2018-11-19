@@ -48,7 +48,7 @@ class App extends Component {
     }))
   }
 
-  spliceAfter = c => {
+  addDropZoneAfter = c => {
     const { list } = this.state
     let indexOfC
     list.forEach(({ color }, i) => {
@@ -63,7 +63,7 @@ class App extends Component {
     const {
       state: { list },
       shuffleBoxes,
-      spliceAfter,
+      addDropZoneAfter,
       dragStart,
       handleDrop
     } = this
@@ -82,10 +82,14 @@ class App extends Component {
                   key={color}
                   draggable
                   onDrag={() => dragStart(color)}
-                  onDragEnter={e => spliceAfter(color)}
+                  onDragEnter={e => addDropZoneAfter(color)}
                   onDragOver={e => e.preventDefault()}
                   onDrop={e => {
                     if (dropZone) handleDrop()
+                  }}
+                  onDragEnd={() => {
+                    // this event never fires
+                    console.log('ended')
                   }}>
                   <div className="listInner" style={{ background: color }} />
                 </ListItem>
