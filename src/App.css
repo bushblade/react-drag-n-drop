@@ -1,0 +1,53 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: darkslategrey;
+}
+
+.App {
+  margin: 3rem auto;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+}
+
+.list-container {
+  display: flex;
+  justify-content: center;
+}
+
+.list-container > ul {
+  width: 350px;
+  margin: 2rem 0;
+  padding: 0;
+}
+
+.list-container li {
+  list-style: none;
+}
+
+.listInner {
+  height: 3rem;
+  cursor: move;
+}
+
+.btn {
+  margin: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 1rem;
+  border: 2px solid lightcyan;
+  background: transparent;
+  color: lightcyan;
+  font-weight: bold;
+  text-transform: uppercase;
+  outline: none;
+  box-shadow: 0 2px 12px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.1s ease-in-out;
+  cursor: pointer;
+}
