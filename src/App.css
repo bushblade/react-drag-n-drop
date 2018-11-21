@@ -36,7 +36,7 @@ body {
 
 .listInner {
   height: 3rem;
-  cursor: move;
+  cursor: -webkit-grab;
 }
 
 .btn {

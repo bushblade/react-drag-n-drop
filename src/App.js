@@ -26,12 +26,10 @@ class App extends Component {
     this.state.list.forEach((li, i) => {
       if (li.color === color) index = i
     })
-    this.setState(({ list, draggingBox }) => {
-      return {
-        draggingBox: { color, index },
-        list: list.map(c => (c.color === color ? { color: '' } : c))
-      }
-    })
+    this.setState(({ list }) => ({
+      draggingBox: { color, index },
+      list: list.map(c => (c.color === color ? { color: '', dropZone: true } : c))
+    }))
   }
 
   handleDrop = () => {
@@ -41,7 +39,7 @@ class App extends Component {
     }))
   }
 
-  addDropZoneAfter = c => {
+  addDropZone = c => {
     const { list } = this.state
     let indexOfC
     list.forEach(({ color }, i) => {
@@ -56,7 +54,7 @@ class App extends Component {
     const {
       state: { list },
       shuffleBoxes,
-      addDropZoneAfter,
+      addDropZone,
       dragStart,
       handleDrop
     } = this
@@ -75,7 +73,7 @@ class App extends Component {
                 key={color}
                 draggable
                 onDrag={() => dragStart(color)}
-                onDragEnter={e => addDropZoneAfter(color)}
+                onDragEnter={e => addDropZone(color)}
                 onDragOver={e => e.preventDefault()}
                 onDrop={e => {
                   if (dropZone) handleDrop()
