@@ -1,13 +1,6 @@
 import React, { Component } from 'react'
-import posed, { PoseGroup } from 'react-pose'
 import './App.css'
 import shuffle from './helpers/shuffle'
-
-const ListItem = posed.li({
-  // draggable: 'y',
-  // init: { scale: 1 },
-  // drag: { scale: 1.2 }
-})
 
 class App extends Component {
   state = {
@@ -67,6 +60,7 @@ class App extends Component {
       dragStart,
       handleDrop
     } = this
+
     return (
       <div className="App">
         <div className="button-container">
@@ -76,25 +70,23 @@ class App extends Component {
         </div>
         <div className="list-container">
           <ul>
-            <PoseGroup>
-              {list.map(({ color, dropZone }) => (
-                <ListItem
-                  key={color}
-                  draggable
-                  onDrag={() => dragStart(color)}
-                  onDragEnter={e => addDropZoneAfter(color)}
-                  onDragOver={e => e.preventDefault()}
-                  onDrop={e => {
-                    if (dropZone) handleDrop()
-                  }}
-                  onDragEnd={() => {
-                    // this event never fires
-                    console.log('ended')
-                  }}>
-                  <div className="listInner" style={{ background: color }} />
-                </ListItem>
-              ))}
-            </PoseGroup>
+            {list.map(({ color, dropZone }) => (
+              <li
+                key={color}
+                draggable
+                onDrag={() => dragStart(color)}
+                onDragEnter={e => addDropZoneAfter(color)}
+                onDragOver={e => e.preventDefault()}
+                onDrop={e => {
+                  if (dropZone) handleDrop()
+                }}
+                onDragEnd={() => {
+                  // this event never fires
+                  console.log('ended')
+                }}>
+                <div className="listInner" style={{ background: color }} />
+              </li>
+            ))}
           </ul>
         </div>
       </div>
